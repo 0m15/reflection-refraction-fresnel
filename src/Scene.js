@@ -6,14 +6,14 @@ import Effects from './Effects'
 
 export default function Scene() {
   return (
-    <Canvas camera={{ fov: 50, position: [0, 0, 50] }}>
+    <Canvas camera={{ fov: 50, position: [0, 0, 5] }}>
       <ambientLight intensity={2} color="yellow" />
       <pointLight intensity={0.8} position={[0, 0, 3]} />
       <Suspense fallback={null}>
         <Background />
         <Crystals />
       </Suspense>
-      <Effects />
+      {/* <Effects /> */}
     </Canvas>
   )
 }

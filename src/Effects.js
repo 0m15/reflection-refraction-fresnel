@@ -5,10 +5,12 @@ import { BlendFunction } from 'postprocessing'
 export default function Effects() {
   return (
     <EffectComposer>
+      <DepthOfField />
       <Noise opacity={0.02} />
+      <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
       <ChromaticAberration
         blendFunction={BlendFunction.NORMAL} // blend mode
-        offset={[0.0025, 0.0003]} // color offset
+        offset={[0.004, 0.0003]} // color offset
       />
       <Vignette eskil={false} offset={0.1} darkness={1.1} />
     </EffectComposer>

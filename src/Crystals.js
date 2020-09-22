@@ -23,7 +23,10 @@ export default function Crystals({ count = 10 }) {
     return [envFbo, backfaceFbo, backfaceMaterial, refractionMaterial]
   }, [size, ratio])
 
-  useFrame(({ clock }) => {
+  let initialTarget
+  useFrame(({ gl: glCurrent, clock }) => {
+    if (!initialTarget) initialTarget = glCurrent.getRenderTarget()
+
     mesh.current.rotation.set(0, clock.getElapsedTime() * 0.15, 0)
 
     gl.autoClear = false
@@ -47,7 +50,7 @@ export default function Crystals({ count = 10 }) {
   })
 
   return (
-    <mesh ref={mesh} position={[0, 0, 15]}>
+    <mesh ref={mesh} layers={1} position={[0, 0, 0]}>
       {/*<dodecahedronBufferGeometry attach="geometry" args={[1.5]} />*/}
       {/*<sphereBufferGeometry attach="geometry" args={[1, 3, 2]} />*/}
       <coneBufferGeometry attach="geometry" args={[1, 2, 4]} />
